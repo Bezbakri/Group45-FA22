@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Playfield : MonoBehaviour
 {
+
     public static int w = 10;
     public static int h = 20;
     public static Transform[,] grid = new Transform[w, h];
@@ -56,6 +57,8 @@ public class Playfield : MonoBehaviour
     }
     public static void deleteFullRows()
     {
+        // Creating an object of my score script to update the score.
+        ScoreScript scoreScript;
         for (int y = 0; y < h; ++y)
         {
             if (isRowFull(y))
@@ -63,13 +66,23 @@ public class Playfield : MonoBehaviour
                 deleteRow(y);
                 decreaseRowsAbove(y + 1);
                 --y;
+                
+                //Setting up the score script by getting the component
+                scoreScript = GameObject.Find("Canvas").GetComponent<ScoreScript>();
+                if (scoreScript == null)
+                {
+                    Debug.Log("GAME OVER!");
+                }
+                //Update Score
+                
+                scoreScript.UpdateScore(100);
             }
         }
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
