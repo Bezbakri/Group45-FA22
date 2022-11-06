@@ -121,5 +121,38 @@ public class Group : MonoBehaviour
             }
             lastFall = Time.time;
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            //Do it in a while true loop, break out once it hits the bottom:
+            while (true)
+            {
+                //Change pos
+                transform.position += new Vector3(0, -1, 0);
+
+                // is it valid?
+                if (isValidGridPos())
+                {
+                    updateGrid();
+                }
+                else
+                {
+                    //Revertion
+                    transform.position += new Vector3(0, -1, 0);
+
+                    //Delete the filled row
+                    Playfield.deleteFullRows();
+
+                    // New block needed
+                    FindObjectOfType<Spawner>().spawnNext();
+
+                    // disable script
+                    enabled = false;
+
+                    // break
+                    break;
+                }
+            }
+
+        }
     }
 }
