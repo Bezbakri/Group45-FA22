@@ -71,6 +71,13 @@ public class Playfield : MonoBehaviour
                 scoreScript = GameObject.Find("Canvas").GetComponent<ScoreScript>();
                 if (scoreScript == null)
                 {
+                    // Creating an object of my game over script so that I can end my bloody game with some text
+                    GameOverScript gameOverScript;
+                    gameOverScript = GameObject.Find("Canvas").GetComponent<GameOverScript>();
+                    if (gameOverScript != null)
+                    {
+                        gameOverScript.GameOver();
+                    }
                     Debug.Log("GAME OVER!");
                 }
                 //Update Score
