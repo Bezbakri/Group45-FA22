@@ -61,7 +61,7 @@ public class Group : MonoBehaviour
     void Update()
     {
         // Move left
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Z))
         {
             //Change pos
             transform.position += new Vector3(-1, 0, 0);
@@ -75,7 +75,7 @@ public class Group : MonoBehaviour
         }
 
         //Slide to the right
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.C))
         {
             //Change pos
             transform.position += new Vector3(1, 0, 0);
@@ -88,8 +88,8 @@ public class Group : MonoBehaviour
                 transform.position += new Vector3(-1, 0, 0);
         }
 
-        //Rotation
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        //Rotation Left
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.D))
         {
             //Change pos
             transform.Rotate(0, 0, -90);
@@ -100,6 +100,20 @@ public class Group : MonoBehaviour
             else
                 //Revertion
                 transform.Rotate(0, 0, 90);
+        }
+
+        //Rotation Right
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            //Change pos
+            transform.Rotate(0, 0, 90);
+
+            // is it valid?
+            if (isValidGridPos())
+                updateGrid();
+            else
+                //Revertion
+                transform.Rotate(0, 0, -90);
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow) || Time.time - lastFall >= 1)
@@ -128,7 +142,7 @@ public class Group : MonoBehaviour
             }
             lastFall = Time.time;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.X))
         {
             //Do it in a while true loop, break out once it hits the bottom:
             while (true)
