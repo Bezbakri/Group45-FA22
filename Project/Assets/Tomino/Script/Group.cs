@@ -63,6 +63,9 @@ public class Group : MonoBehaviour
         // Move left
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.Z))
         {
+            //press ui
+            //GameObject.Find("transleft").material.color(0, 0, 0, 100);
+
             //Change pos
             transform.position += new Vector3(-1, 0, 0);
 
